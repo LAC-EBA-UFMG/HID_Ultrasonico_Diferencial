@@ -1,13 +1,14 @@
 /************************************************************************************
- * Controle OSC com sensores LIDAR ou Ultrasônico                                   *
+ * Controle HID Ultrasônico Diferencial                                             *
  *                                                                                  *
- * Este é um controle de ponteiro do Mouse no eixo X, utilizando um                 *
+ * Este é um controle HID(Human Interface Device) que movimenta o  ponteiro         *
+ * do Mouse no eixo X (Facilmente modificável para o eixo Y), utilizando um         *
  * Arduino Leonardo ou Pro Micro e dois sensores ultrassônicos de distância em modo *
  * diferencial. Assim, tanto a direção quanto a velocidade do ponteiro são          *
  * calculadas pela diferença da distância entre dois obstáculos, por exemplo        *
  * duas mãos. Ou seja, se as duas mãos estiverem à mesma distância dos sensores,    *
- * não há movimento. Caso haja uma diferença, o cursor se move para o mais próximo  *
- * e quanto maior a diferença maior será a velocidade do ponteiro.                  *
+ * não há movimento. Caso haja uma diferença, o cursor se move para o lado da       *
+ * mão mais próxima. Quanto maior a diferença maior será a velocidade do ponteiro.  *
  *                                                                                  *
  * Autor: Sandro Benigno                                                            *
  * Licença de uso: GNU GPL 2.0                                                      *
