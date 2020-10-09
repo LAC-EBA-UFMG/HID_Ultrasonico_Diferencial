@@ -24,11 +24,11 @@
 #include <Ultrasonic.h>
 #include <Mouse.h>
 
-#define DEBUG
-#define MAX_RANGE 50 //max range dos sonares
-#define MAX_ACCEL 20 //max diferença entre as mãos e max aceleracao do stick analogico virtual
-#define MAX_STICK 50 //max range do stick analogico virtual pra cada lado
-#define DEAD_ZONE 2 //zona morta do stick analógico virtual
+#define DEBUG //Comente essa linha para desativar as informações de debug na porta serial
+#define MAX_RANGE 50 //Valor máximo útil, dado em centímetros, para a detecção dos obstáculos pelos sonares
+#define MAX_ACCEL 20 //Valor máximo de diferença entre as mãos, dado em centímetros (para o cálculo de aceleração do ponteiro)
+#define MAX_STICK 50 //Valor máximo de deslocamento em pixels (para o cálculo de aceleração do ponteiro)
+#define DEAD_ZONE 2 //Zona morta: pequena diferença em centímetros, que visa não produzir movimento
 
 Ultrasonic L(4,5); //Sensor ultrassônico Esquerto
 Ultrasonic R(2,3); //Sensor ultrassônico Direito
