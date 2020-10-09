@@ -21,7 +21,7 @@
  **********************************************************************************/
  
 #include <Arduino.h>
-#include <Ultrasonic.h>
+#include <Ultrasonic.h> //Biblioteca disponível em https://github.com/ErickSimoes/Ultrasonic
 #include <Mouse.h>
 
 #define DEBUG //Comente essa linha para desativar as informações de debug na porta serial
