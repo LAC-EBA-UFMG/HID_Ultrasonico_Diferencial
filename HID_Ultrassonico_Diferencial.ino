@@ -30,40 +30,48 @@
 #define MAX_STICK 50 //max range do stick analogico virtual pra cada lado
 #define DEAD_ZONE 2 //zona morta do stick analógico virtual
 
-Ultrasonic L(4,5);
-Ultrasonic R(2,3);
+Ultrasonic L(4,5); //Sensor ultrassônico Esquerto
+Ultrasonic R(2,3); //Sensor ultrassônico Direito
 
 void setup() {
-  //Analogico virtual
-  Mouse.begin();
-  // put your setup code here, to run once:
-  Serial.begin(115200);
+  Mouse.begin(); //Inicializando o Arduino como um dispositivo HID do tipo Mouse
+  Serial.begin(115200); //Inicializando a porta serial
+
+  //Configurando o tempo máximo de espera pelo eco ultrassônico
   L.setTimeout(40000UL);
   R.setTimeout(40000UL);
 }
 
+/*=====================================================================
+* Função de validação a leitura, pela distância máxima entre as mãos. *
+* Isso garante ao sistema ignorar pacotes perdidos, eliminando ruídos *
+* e também verifica se ambas as mãos estão presentes para medição.    *
+=====================================================================*/
 bool validPack(uint8_t distl, uint8_t distr){
   if(max(distl,distr) > MAX_RANGE){
     return false;
   }
   else return true;
 }
-
+/*=====================================================
+ * Função que calcula e gera o deslocamento no eixo X *
+=====================================================*/
 int8_t geraX(int8_t dir, uint8_t acc){
   int8_t x = dir * (float(float(acc) / float(MAX_ACCEL)) * MAX_STICK);
   return x;
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  uint8_t Dist_L, Dist_R, Accel = 0;
-  int8_t JoyDir = 0;
+  uint8_t Dist_L, Dist_R, Accel = 0; //Variáveis de Distancia e Aceleração
+  int8_t JoyDir = 0; //Variável de direção
+
+  //Leitura dos sensores
   Dist_L = L.read();
-  delay(25);
+  delay(25); //um intervalo de 25ms previne ruídos por interferência entre os sensores
   Dist_R = R.read();
   delay(25);
 
-  //Testa pacote válido, distâncias dentro do range máximo
+  //Testa pacote válido, distâncias dentro do range máximo eatribui os valores
   if(validPack(Dist_L, Dist_R)){
     Accel = constrain(abs(Dist_L - Dist_R),0,MAX_ACCEL);
     if( Accel > DEAD_ZONE){
@@ -80,8 +88,9 @@ void loop() {
     Accel = 0;
   }
 
-  int8_t eixo_x = geraX(JoyDir, Accel); //calcula valor de X do stick analogico virtual
+  int8_t eixo_x = geraX(JoyDir, Accel); //calcula valor de X do ponteiro
 
+//Prints de debug caso esteja habilitado
 #ifdef DEBUG
   Serial.print("L: ");
   Serial.print(Dist_L);
@@ -98,5 +107,5 @@ void loop() {
   Serial.println(eixo_x);
 #endif
  
- Mouse.move(eixo_x, 0, 0);
+ Mouse.move(eixo_x, 0, 0); //Movimenta o ponteiro do mouse
 }
