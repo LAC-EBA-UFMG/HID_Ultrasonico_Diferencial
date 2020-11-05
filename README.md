@@ -4,7 +4,7 @@ Este é um controle HID(Human Interface Device) que movimenta o  ponteiro do mou
 
 <img src="images/Ponteiro_Dif.jpg" />
 
-Importante perceber que, desde que as mãos estejam dentro do alcance dos sensores, a distância não importa para o algoritmo, o que gera movimento é a diferença entre as mãos. Caso um das mãos esteja fora de alcance o argoritmo não gera movimento. As duas mãos precisam estar presentes e gerando diferença.
+Importante perceber que, desde que os obstáculos estejam dentro do alcance dos sensores, a distância do conjunto não importa para o algoritmo, o que gera movimento é a diferença entre os obstáculos. Caso um dos obstáculos esteja numa distância fora da zona programada de detecção, o argoritmo não gerará movimento. Os dois obstáculos precisam estar presentes e produzindo diferença.
 
 As placas de controle baseadas no chip MEGA32U4 apresentam a posibilidade de serem programadas como dispositivos USB do tipo HID (Human Interface Device). São dispositivos que servem como interface humano-máquina, tais como mouse, teclado, joysticks, touchpads, etc. Assim, ligando potenciômetros, botões, sensores de toque, dentre outros, essas placas podem atuar como essas interfaces ou emular suas características (como é o caso deste projeto).
 
