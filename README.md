@@ -1,5 +1,10 @@
 # HID_Ultrassonico_Diferencial
 
+<pre>Este experimento faz parte do projeto de extensão "Repositório de código do LAC".
+Um projeto que visa disponibilizar código e documentação de referência para os desenvolvimentos
+do Laboratório de Artes Computacionais da Escola de Belas Artes da UFMG,
+estendendo o acesso desse material à comunidade geral de software e hardware livres.</pre>
+
 Este é um controle HID(Human Interface Device) que movimenta o  ponteiro do mouse em um de seus dois eixos (aqui codificado para o X), utilizando um Arduino Leonardo ou Pro Micro e dois sensores ultrassônicos de distância em modo diferencial. Assim, tanto a direção quanto a velocidade do ponteiro são calculadas pela diferença da distância entre dois obstáculos, por exemplo duas mãos. Ou seja, se as duas mãos estiverem à mesma distância dos sensores, não há movimento. Caso haja uma diferença, o cursor se move para o lado da mão mais próxima. Quanto maior a diferença maior será a velocidade do ponteiro.
 
 <img src="images/Ponteiro_Dif.jpg" />
