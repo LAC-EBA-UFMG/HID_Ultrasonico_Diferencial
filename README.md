@@ -10,7 +10,7 @@ Este é um controle HID(Human Interface Device) que movimenta o  ponteiro do mou
 
 <img src="images/Ponteiro_Dif.jpg" />
 
-Importante perceber que, desde que os obstáculos estejam dentro do alcance dos sensores, a distância do conjunto não importa para o algoritmo, o que gera movimento é a diferença entre os obstáculos. Caso um dos obstáculos esteja numa distância fora da zona programada de detecção, o argoritmo não gerará movimento. Os dois obstáculos precisam estar presentes e produzindo diferença. Porém, se os obstáculos se aproximarem bastante e equilibrados, um clique único irá ocorrer. Para gerar outro clique, deve-se retirar as mãos e voltar da mesma forma, conforme a ilustração abaixo:
+Importante perceber que, desde que os obstáculos estejam dentro do alcance dos sensores, a distância do conjunto não importa para o algoritmo, o que gera movimento é a diferença entre os obstáculos. Caso um dos obstáculos esteja numa distância fora da zona programada de detecção, o argoritmo não gerará movimento. Os dois obstáculos precisam estar presentes e produzindo diferença. Porém, se os obstáculos entrarem ou se aproximarem bastante e equilibrados, um clique único irá ocorrer. Para gerar outro clique, deve-se retirar as mãos e voltar da mesma forma, conforme a ilustração abaixo:
 
 <img src="images/Ponteiro_Clique.jpg" />
 
