@@ -27,8 +27,10 @@
 #define DEBUG //Comente essa linha para desativar as informações de debug na porta serial
 #define MAX_RANGE 50 //Valor máximo útil, dado em centímetros, para a detecção dos obstáculos pelos sonares
 #define MAX_ACCEL 20 //Valor máximo de diferença entre as mãos, dado em centímetros (para o cálculo de aceleração do ponteiro)
-#define MAX_STICK 50 //Valor máximo de deslocamento em pixels (para o cálculo de aceleração do ponteiro)
-#define DEAD_ZONE 2 //Zona morta: pequena diferença em centímetros, que visa não produzir movimento
+#define MAX_STICK 25 //Valor máximo de deslocamento em pixels (para o cálculo de aceleração do ponteiro)
+#define DEAD_ZONE 4 //Zona morta: pequena diferença em centímetros, que visa não produzir movimento
+#define CLICK_ZONE 5 //distância abaixo da qual é gerado um click, caso ambas as mãos estejam próximas e sem gerar diferença
+boolean on_click = 0; //variável de controle de clique
 
 Ultrasonic L(4,5); //Sensor ultrassônico Esquerto
 Ultrasonic R(2,3); //Sensor ultrassônico Direito
@@ -53,12 +55,28 @@ bool validPack(uint8_t distl, uint8_t distr){
   }
   else return true;
 }
+
 /*=====================================================
  * Função que calcula e gera o deslocamento no eixo X *
 =====================================================*/
 int8_t geraX(int8_t dir, uint8_t acc){
   int8_t x = dir * (float(float(acc) / float(MAX_ACCEL)) * MAX_STICK);
   return x;
+}
+
+/*=======================================================
+ * Função que verifica distância mímima para um click,  *
+ * dentro da zona de detecção, porém numa diferenciação * 
+ * abaixo do limiar, compeendendo a  zona morta         *
+=======================================================*/
+boolean geraClick(uint8_t distl, uint8_t distr){
+  uint8_t dist = min(distl, distr);
+  if( dist <= CLICK_ZONE && !on_click){
+    on_click = true;
+    Mouse.press(); //Clique único no mouse
+    delay(500);
+    Mouse.release();
+  }
 }
 
 void loop() {
@@ -80,12 +98,17 @@ void loop() {
       }
       else JoyDir = 1;
     }
-    else JoyDir = 0;
+    else{
+      JoyDir = 0;
+      Accel = 0;
+      geraClick(Dist_L, Dist_R); //Experimental
+    }
   }
   else
   {
     JoyDir = 0;
     Accel = 0;
+    on_click = false;
   }
 
   int8_t eixo_x = geraX(JoyDir, Accel); //calcula valor de X do ponteiro
