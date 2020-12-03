@@ -29,8 +29,8 @@
 #define MAX_ACCEL 20 //Valor máximo de diferença entre as mãos, dado em centímetros (para o cálculo de aceleração do ponteiro)
 #define MAX_STICK 25 //Valor máximo de deslocamento em pixels (para o cálculo de aceleração do ponteiro)
 #define DEAD_ZONE 4 //Zona morta: pequena diferença em centímetros, que visa não produzir movimento
-#define CLICK_ZONE 5 //distância abaixo da qual é gerado um click, caso ambas as mãos estejam próximas e sem gerar diferença
-boolean on_click = 0; //variável de controle de clique
+#define CLICK_ZONE 5 //distância abaixo da qual é gerado um click, caso ambas as mãos estejam próximas e sem gerar diferença maior que DEAD_ZONE
+boolean on_click = false; //variável de controle de clique
 
 Ultrasonic L(4,5); //Sensor ultrassônico Esquerto
 Ultrasonic R(2,3); //Sensor ultrassônico Direito
